@@ -40,4 +40,37 @@ public class categoryController {
         PageResult pageResult = categoryService.pageCategory(categoryPageQueryDTO);
         return  Result.success(pageResult);
     }
+    /**
+     * 启用、禁用分类
+     * POST
+     * /admin/category/status/{status}
+     */
+    @PostMapping("/status/{status}")
+    public Result<Integer> updateStatus(Long id, @PathVariable  Integer status){
+        Integer integer = categoryService.updateStatus(id, status);
+        return Result.success(integer);
+    }
+    /**
+     * 根据id删除分类
+     * #344985101
+     * DELETE
+     * /admin/category
+     */
+    @DeleteMapping()
+    public Result<Integer> deleteCategory(Long id){
+        Integer integer = categoryService.deleteCategory(id);
+        return Result.success(integer);
+    }
+    /**
+     * 修改分类
+     * #344985097
+     * PUT
+     * /admin/category
+     */
+    @PutMapping
+    public Result<Integer > updateCategory(@RequestBody  CategoryDTO categoryDTO){
+        Integer integer = categoryService.updateCategory(categoryDTO);
+        return Result.success(integer);
+
+    }
 }

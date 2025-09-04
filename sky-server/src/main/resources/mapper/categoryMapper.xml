@@ -8,6 +8,8 @@
             update_time,create_user,update_user)
         values (#{type},#{name},#{sort},#{createTime},#{updateTime},#{createUser},#{updateUser})
     </insert>
+
+
     <select id="pageCategory" resultType="com.sky.entity.Category">
     select * from category
     <where>
@@ -15,4 +17,19 @@
         <if test="type!=null and type!=''"> and type=#{type}</if>
     </where>
     </select>
+    <update id="updateStatus" >
+            update category set status=#{status} where id=#{id}
+
+    </update>
+
+    <delete id="deleteCategory">
+        delete from category where id=#{id}
+    </delete>
+    <update id="updateCategory">
+        update category
+        <if test="name!=null and name!=''"> set  name=#{name},</if>
+        <if test="sort!=null and sort!=''">  sort=#{sort}, </if>
+          update_time=now()
+        where id=#{id}
+    </update>
 </mapper>

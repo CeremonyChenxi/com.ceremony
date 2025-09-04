@@ -1,5 +1,6 @@
 package com.sky.mapper;
 
+import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
 import com.sky.entity.Category;
 import org.apache.ibatis.annotations.Mapper;
@@ -10,4 +11,7 @@ import java.util.List;
 public interface categoryMapper {
     Integer addCategory(Category category);
     List<Category> pageCategory (CategoryPageQueryDTO categoryPageQueryDTO);
+    Integer updateStatus(Long id,Integer status);
+    Integer deleteCategory(Long id);
+    Integer updateCategory(CategoryDTO categoryDTO);
 }

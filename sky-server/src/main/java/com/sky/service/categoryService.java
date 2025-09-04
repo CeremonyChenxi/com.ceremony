@@ -22,4 +22,25 @@ public interface categoryService {
      *
      */
     PageResult pageCategory(CategoryPageQueryDTO categoryPageQueryDTO);
+    /**
+     * 启用、禁用分类
+     * POST
+     * /admin/category/status/{status}
+     */
+    Integer updateStatus(Long id,Integer status);
+    /**
+     * 根据id删除分类
+     * #344985101
+     * DELETE
+     * /admin/category
+     */
+    Integer deleteCategory( Long id);
+    /**
+     *   /**
+     *      * 修改分类
+     *      * #344985097
+     *      * PUT
+     *      * /admin/category
+     *      */
+    Integer updateCategory(CategoryDTO categoryDTO);
 }

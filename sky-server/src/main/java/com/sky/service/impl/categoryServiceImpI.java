@@ -9,6 +9,7 @@ import com.sky.entity.Category;
 import com.sky.mapper.categoryMapper;
 import com.sky.result.PageResult;
 import com.sky.service.categoryService;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -51,4 +52,39 @@ public class categoryServiceImpI implements categoryService {
         PageResult pageResult = new PageResult(categoryPageInfo.getTotal(), categories);
         return pageResult;
     }
+    /**
+     * 启用、禁用分类
+     * POST
+     * /admin/category/status/{status}
+     */
+    @Override
+    public Integer updateStatus(Long id, Integer status) {
+        Integer result =categoryMapper.updateStatus(id,status);
+        return result;
+    }
+
+    /**
+     * 根据id删除分类
+     * #344985101
+     * DELETE
+     * /admin/category
+     * @param id
+     * @return
+     */
+    @Override
+    public Integer deleteCategory(Long id) {
+        Integer integer = categoryMapper.deleteCategory(id);
+        return integer;
+    }
+    /**
+     *   /**
+     *      * 修改分类
+     *      * #344985097
+     *      * PUT
+     *      * /admin/category
+     *      */
+     public Integer updateCategory(CategoryDTO categoryDTO){
+         Integer r = categoryMapper.updateCategory(categoryDTO);
+         return r;
+     }
 }
