@@ -1,5 +1,6 @@
 package com.sky.mapper;
 
+import com.sky.dto.EmployeeDTO;
 import com.sky.entity.Employee;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -30,4 +31,23 @@ public interface EmployeeMapper {
      * 通过pageHelper
      */
     List<Employee> getListEmployeeByPage(String name);
+    Integer banEmployee(Integer id, Integer status);
+    EmployeeDTO getEmployeeByID(Integer id);
+    /**
+     * 编辑员工信息
+     * PUT
+     * /admin/employee
+     */
+    Integer editEmployee(EmployeeDTO employeeDTO);
+
+    /**
+     *
+     * @param id
+     * @return
+     * 修改密码
+     * PUT
+     * /admin/employee/editPassword
+     */
+    String getPasswordById(Long id);
+    Integer editPassword(Long id,String newPassword);
 }

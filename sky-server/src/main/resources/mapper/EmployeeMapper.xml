@@ -17,4 +17,24 @@
                 <if test="name!=null"> name like concat('%',#{name},'%')</if>
             </where>
     </select>
+    <update id="banEmployee" >
+            update Employee set status=#{status} where id=#{id}
+    </update>
+
+    <select id="getEmployeeByID" resultType="com.sky.dto.EmployeeDTO">
+        select * from Employee where id=#{id}
+    </select>
+
+    <update id="editEmployee" >
+        update Employee set username=#{username},name=#{name},phone=#{phone},sex=#{sex},id_number=#{idNumber}
+            where id=#{id}
+    </update>
+
+    <select id="getPasswordById" resultType="java.lang.String">
+        select password from Employee where id =#{id}
+    </select>
+    <update id="editPassword">
+
+    update Employee set password =md5(#{newPassword}) where id=#{id}
+    </update>
 </mapper>
