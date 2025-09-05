@@ -9,7 +9,6 @@ import com.sky.entity.Category;
 import com.sky.mapper.categoryMapper;
 import com.sky.result.PageResult;
 import com.sky.service.categoryService;
-import io.swagger.models.auth.In;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -87,4 +86,10 @@ public class categoryServiceImpI implements categoryService {
          Integer r = categoryMapper.updateCategory(categoryDTO);
          return r;
      }
+
+    @Override
+    public List<Category> getCategoryByCategoryID(Integer type) {
+        List<Category> categoryByCategoryID = categoryMapper.getCategoryByCategoryID(type);
+        return categoryByCategoryID;
+    }
 }

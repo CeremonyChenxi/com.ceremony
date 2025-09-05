@@ -5,9 +5,6 @@ import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.PasswordEditDTO;
 import com.sky.entity.Employee;
 import com.sky.result.PageResult;
-import io.swagger.models.auth.In;
-
-import java.util.List;
 
 public interface EmployeeService {
 

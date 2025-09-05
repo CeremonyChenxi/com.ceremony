@@ -11,6 +11,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/admin/category")
 @RestController
 public class categoryController {
@@ -72,5 +74,15 @@ public class categoryController {
         Integer integer = categoryService.updateCategory(categoryDTO);
         return Result.success(integer);
 
+    }
+    /**
+     * 根据类型查询分类
+     * GET
+     * /admin/category/list
+     */
+    @GetMapping("/list")
+    public Result<List<Category>> getCategoryByCategoryID(Integer type){
+        List<Category> categoryByCategoryID = categoryService.getCategoryByCategoryID(type);
+        return Result.success(categoryByCategoryID);
     }
 }

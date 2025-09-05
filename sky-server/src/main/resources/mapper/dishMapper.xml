@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.dishMapper">
+
+
+
+    <select id="pageDish" resultType="com.sky.entity.Dish">
+        select * from dish
+        <where>
+                <if test="name!=null and name!=''"> and name like concat('%',#{name},'%')</if>
+                <if test="categoryId!=null and categoryId!=''">and category_id=#{categoryId}</if>
+                <if test="status!=null and status!=''">and status=#{status}</if>
+        </where>
+    </select>
+
+
+    <delete id="deleteBatchDish">
+        delete from dish
+        where id in <foreach collection="idList" item="id" open="(" close=")" separator=",">
+                #{id}
+    </foreach>
+    </delete>
+    <select id="getDishByID" resultType="com.sky.entity.Dish">
+        select * from dish where id=#{id}
+    </select>
+    <select id="getDishBycategory_id" resultType="com.sky.entity.Dish">
+        select * from dish where category_id=#{id}
+    </select>
+    <update id="updateBanDish">
+        update dish set status=#{status}, update_time=now() where id=#{id}
+    </update>
+    <insert id="addDish" parameterType="com.sky.entity.Dish" useGeneratedKeys="true" keyProperty="id">
+        insert into dish
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="categoryId != null">category_id,</if>
+            <if test="price != null">price,</if>
+            <if test="image != null">image,</if>
+            <if test="description != null">description,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="createUser != null">create_user,</if>
+            <if test="updateUser != null">update_user,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="price != null">#{price},</if>
+            <if test="image != null">#{image},</if>
+            <if test="description != null">#{description},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="createUser != null">#{createUser},</if>
+            <if test="updateUser != null">#{updateUser},</if>
+        </trim>
+    </insert>
+
+</mapper>

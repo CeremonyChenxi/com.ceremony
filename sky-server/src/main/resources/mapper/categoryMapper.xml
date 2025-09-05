@@ -17,6 +17,7 @@
         <if test="type!=null and type!=''"> and type=#{type}</if>
     </where>
     </select>
+
     <update id="updateStatus" >
             update category set status=#{status} where id=#{id}
 
@@ -32,4 +33,7 @@
           update_time=now()
         where id=#{id}
     </update>
+    <select id="getCategoryByCategoryID" resultType="com.sky.entity.Category">
+        select * from category where type=#{type}
+    </select>
 </mapper>
