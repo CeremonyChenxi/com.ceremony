@@ -49,7 +49,7 @@ public class dishController {
      */
     @GetMapping("{id}")
     public Result getDishByID(@PathVariable  Integer id){
-       Dish dish= dishService.getDishByID(id);
+       DishDTO dish= dishService.getDishByID(id);
        return Result.success(dish);
     }
     /**
@@ -84,5 +84,15 @@ public class dishController {
     public Result addDish(@RequestBody  DishDTO dishDTO){
         Integer integer = dishService.addDish(dishDTO);
         return Result.success(integer);
+    }
+    /**
+     * 修改菜品
+     * PUT
+     * /admin/dish
+     */
+    @PutMapping
+    public Result updateDish(@RequestBody DishDTO dishDTO){
+        Integer updateDish = dishService.updateDish(dishDTO);
+        return Result.success(updateDish);
     }
 }

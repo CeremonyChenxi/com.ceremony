@@ -8,6 +8,7 @@ import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 
 import com.sky.entity.Dish;
+import com.sky.entity.DishFlavor;
 import com.sky.mapper.dishMapper;
 import com.sky.result.PageResult;
 import com.sky.service.dishService;
@@ -46,9 +47,13 @@ public class dishServiceImpI implements dishService {
         Integer integer = dishMapper.deleteBatchDish(idList);
         return integer;
     }
-    public Dish getDishByID(Integer id){
+    public DishDTO getDishByID(Integer id){
         Dish dishByID = dishMapper.getDishByID(id);
-        return dishByID;
+        DishDTO dishDTO = new DishDTO();
+        BeanUtils.copyProperties(dishByID,dishDTO);
+        List<DishFlavor> dishFlavorByID = dishMapper.getDishFlavorByID(id);
+        dishDTO.setFlavors(dishFlavorByID);
+        return dishDTO;
     }
 
     @Override
@@ -63,7 +68,27 @@ public class dishServiceImpI implements dishService {
     public Integer addDish(DishDTO dishDTO){
         Dish dish = new Dish();
         BeanUtils.copyProperties(dishDTO,dish);
-        Integer integer = dishMapper.addDish(dish);
-        return null;
+        Integer addDish = dishMapper.addDish(dish);
+        List<DishFlavor> flavors = dishDTO.getFlavors();
+        for (DishFlavor flavor : flavors) {
+            flavor.setDishId(dish.getId());
+        }
+        System.out.println("reading "+flavors);
+        Integer addDishFlavor = dishMapper.addDishFlavor(dishDTO.getFlavors());
+        return addDish+addDishFlavor;
+    }
+
+    @Override
+    public Integer updateDish(DishDTO dishDTO) {
+        Dish dish = new Dish();
+        BeanUtils.copyProperties(dishDTO,dish);
+        Integer updateDish = dishMapper.updateDish(dish);
+        //需要把之前的dish_flavor相关的删掉,再插入
+        Integer deleteDishFlavorByDishID = dishMapper.deleteDishFlavorByDishID(dishDTO.getId());
+        for (DishFlavor flavor : dishDTO.getFlavors()) {
+            flavor.setDishId(dishDTO.getId());
+        }
+        Integer addDishFlavor = dishMapper.addDishFlavor(dishDTO.getFlavors());
+        return updateDish+deleteDishFlavorByDishID+addDishFlavor;
     }
 }

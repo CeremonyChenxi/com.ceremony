@@ -21,8 +21,11 @@ public interface dishService {
      * /admin/dish
      */
     Integer deleteBatchDish(String ids);
-    Dish getDishByID(Integer id);
+    DishDTO getDishByID(Integer id);
     List<Dish> getDishBycategory_id(Integer id);
     Integer updateBanDish(Integer ID,Integer status);
     Integer addDish(DishDTO dishDTO);
+    Integer updateDish(DishDTO dishDTO);
+
+
 }
