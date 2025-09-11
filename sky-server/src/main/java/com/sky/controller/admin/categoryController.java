@@ -85,4 +85,9 @@ public class categoryController {
         List<Category> categoryByCategoryID = categoryService.getCategoryByCategoryID(type);
         return Result.success(categoryByCategoryID);
     }
+    /**
+     * 根据分类id查询菜品
+     * GET
+     * /admin/dish/list
+     */
 }

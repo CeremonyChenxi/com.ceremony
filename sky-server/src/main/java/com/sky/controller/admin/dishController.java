@@ -58,8 +58,8 @@ public class dishController {
      * /admin/dish/list
      */
     @GetMapping("/list")
-    public Result getDishBycategory_id(Integer category_id){
-        List<Dish> dishBycategory_id = dishService.getDishBycategory_id(category_id);
+    public Result getDishBycategory_id(Integer categoryId){
+        List<Dish> dishBycategory_id = dishService.getDishBycategory_id(categoryId);
         return Result.success(dishBycategory_id);
     }
     /**
