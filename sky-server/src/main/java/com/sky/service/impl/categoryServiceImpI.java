@@ -24,7 +24,7 @@ public class categoryServiceImpI implements categoryService {
      * #344985100
      * POST
      * /admin/category
-     * @param Category
+     * @param
      * @return
      */
     @Override

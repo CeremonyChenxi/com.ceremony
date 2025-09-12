@@ -39,3 +39,10 @@ sky:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌名称
     admin-token-name: token
+    user-secret-key: itceremony
+    user-ttl: 720000
+    user-token-name: authentication
+  wechat:
+    appid: wxc61b720e27ef6cb5
+    secret: 0d573720014c8115d3310aa03f23e4bf
+
