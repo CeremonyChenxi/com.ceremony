@@ -94,4 +94,10 @@ public class setmealServiceImpI implements setmealService {
         Integer integer = setmealMapper.deleteSetmeal(serializables);
         return  integer;
     }
+
+    @Override
+    public List<Setmeal> list(Setmeal setmeal) {
+        List<Setmeal> list = setmealMapper.list(setmeal);
+        return list;
+    }
 }

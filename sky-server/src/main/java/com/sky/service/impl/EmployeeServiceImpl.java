@@ -86,8 +86,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         // : 2025/9/3 后面解决创建人的问题
         //使用ThreadLocal
-//        employee.setCreateUser(BaseContext.getCurrentId());
-//        employee.setUpdateUser(BaseContext.getCurrentId());
+      employee.setCreateUser(BaseContext.getCurrentId());
+       employee.setUpdateUser(BaseContext.getCurrentId());
         System.out.println(employee);
         Integer affected = employeeMapper.insertEmployee(employee);
         return affected;

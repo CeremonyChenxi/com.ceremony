@@ -4,6 +4,7 @@ import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.result.PageResult;
+import com.sky.vo.DishVO;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface dishService {
      * /admin/dish/page
      */
     PageResult pageDish(DishPageQueryDTO dishPageQueryDTO);
-    List<Dish> ListDish(Long categoryId);
+
     /**
      * 批量删除菜品
      * DELETE
@@ -26,6 +27,11 @@ public interface dishService {
     Integer updateBanDish(Integer ID,Integer status);
     Integer addDish(DishDTO dishDTO);
     Integer updateDish(DishDTO dishDTO);
-
+    /**
+     * 条件查询菜品和口味
+     * @param dish
+     * @return
+     */
+    List<DishVO> listWithFlavor(Dish dish);
 
 }

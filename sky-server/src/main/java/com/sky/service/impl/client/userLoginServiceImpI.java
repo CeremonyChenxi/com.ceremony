@@ -8,7 +8,7 @@ import com.sky.entity.User;
 import com.sky.exception.LoginFailedException;
 import com.sky.mapper.userMapper;
 import com.sky.properties.WeChatProperties;
-import com.sky.service.client.userLoginService;
+import com.sky.service.userLoginService;
 import com.sky.utils.HttpClientUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

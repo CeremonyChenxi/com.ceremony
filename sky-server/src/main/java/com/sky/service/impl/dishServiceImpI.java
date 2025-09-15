@@ -12,11 +12,13 @@ import com.sky.entity.DishFlavor;
 import com.sky.mapper.dishMapper;
 import com.sky.result.PageResult;
 import com.sky.service.dishService;
+import com.sky.vo.DishVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,11 +36,11 @@ public class dishServiceImpI implements dishService {
         return pageResult;
     }
 
-    @Override
-    public List<Dish> ListDish(Long categoryId) {
-        List<Dish> dishes = dishMapper.ListDish(categoryId);
-        return dishes;
-    }
+
+//    public List<Dish> ListDish(Long categoryId) {
+//        List<Dish> dishes = dishMapper.ListDish(categoryId);
+//        return dishes;
+//    }
 
     @Override
     public Integer deleteBatchDish(String ids) {
@@ -90,5 +92,29 @@ public class dishServiceImpI implements dishService {
         }
         Integer addDishFlavor = dishMapper.addDishFlavor(dishDTO.getFlavors());
         return updateDish+deleteDishFlavorByDishID+addDishFlavor;
+    }
+    /**
+     * 条件查询菜品和口味
+     * @param dish
+     * @return
+     */
+    public List<DishVO> listWithFlavor(Dish dish) {
+
+        List<Dish> dishList = dishMapper.getDishBycategory_id(dish.getCategoryId().intValue());
+
+        List<DishVO> dishVOList = new ArrayList<>();
+
+        for (Dish d : dishList) {
+            DishVO dishVO = new DishVO();
+            BeanUtils.copyProperties(d,dishVO);
+
+            //根据菜品id查询对应的口味
+            List<DishFlavor> flavors = dishMapper.getDishFlavorByID(d.getId().intValue());
+
+            dishVO.setFlavors(flavors);
+            dishVOList.add(dishVO);
+        }
+
+        return dishVOList;
     }
 }

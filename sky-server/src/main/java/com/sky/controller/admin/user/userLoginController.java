@@ -4,7 +4,7 @@ import com.sky.dto.UserLoginDTO;
 import com.sky.entity.User;
 import com.sky.properties.JwtProperties;
 import com.sky.result.Result;
-import com.sky.service.client.userLoginService;
+import com.sky.service.userLoginService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.UserLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
